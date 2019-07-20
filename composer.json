@@ -1,0 +1,29 @@
+{
+    "name": "paulhenri-l/eloquent-builder-decorator",
+    "description": "Allows you to decorate Laravel query builders",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "paulhenri-l",
+            "email": "25308170+paulhenri-l@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/database": "^5.8",
+        "fzaninotto/faker": "^1.8",
+        "phpunit/phpunit": "^8.2",
+        "symfony/var-dumper": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "PaulhenriL\\EloquentBuilderDecorator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PaulhenriL\\EloquentBuilderDecorator\\Tests\\": "tests/"
+        }
+    }
+}
