@@ -1,5 +1,7 @@
 # Eloquent Builder Decorator
 
+[![Build Status](https://travis-ci.org/paulhenri-l/eloquent-builder-decorator.svg?branch=master)](https://travis-ci.org/paulhenri-l/eloquent-builder-decorator)
+
 This package will allow you to create Query builder decorators.
 
 ### Why decorating the query builder?
