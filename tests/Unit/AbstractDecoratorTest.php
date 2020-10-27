@@ -2,6 +2,7 @@
 
 namespace PaulhenriL\EloquentBuilderDecorator\Tests\Unit;
 
+use PaulhenriL\EloquentBuilderDecorator\Tests\Factories\UserFactory;
 use PaulhenriL\EloquentBuilderDecorator\Tests\Fakes\QueryWithType;
 use PaulhenriL\EloquentBuilderDecorator\Tests\Fakes\User;
 use PaulhenriL\EloquentBuilderDecorator\Tests\Fakes\QueryWithActive;
@@ -14,8 +15,8 @@ class AbstractDecoratorTest extends TestCase
     {
         parent::setUp();
 
-        $this->factory(User::class, 2)->create(['active' => false]);
-        $this->factory(User::class)->create(['active' => true]);
+        UserFactory::times(2)->create(['active' => false]);
+        UserFactory::new()->create(['active' => true]);
     }
 
     public function test_eloquent_builder_can_be_decorated()
@@ -36,7 +37,7 @@ class AbstractDecoratorTest extends TestCase
 
     public function test_the_query_remains_decorated_after_multiple_calls()
     {
-        $user = $this->factory(User::class)->create(['active' => true]);
+        $user = UserFactory::new()->create(['active' => true]);
 
         $query = new QueryWithActive(Capsule::table('users'));
 
@@ -55,7 +56,7 @@ class AbstractDecoratorTest extends TestCase
 
     public function test_you_can_chain_calls()
     {
-        $user = $this->factory(User::class)->create(['active' => true]);
+        $user = UserFactory::new()->create(['active' => true]);
 
         $query = new QueryWithActive(Capsule::table('users'));
 
@@ -76,7 +77,7 @@ class AbstractDecoratorTest extends TestCase
 
     public function test_multiple_decorators_can_work_together()
     {
-        $user = $this->factory(User::class)->create([
+        $user = UserFactory::new()->create([
             'name' => 'test-name',
             'type' => 'premium',
             'active' => 1

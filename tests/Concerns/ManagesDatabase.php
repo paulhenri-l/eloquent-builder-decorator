@@ -15,20 +15,12 @@ trait ManagesDatabase
     protected static $dbPrepared = false;
 
     /**
-     * The Eloquent factory instance.
-     *
-     * @var Factory
-     */
-    protected static $factory;
-
-    /**
      * Prepare the test database.
      */
     protected function prepareDbIfNecessary()
     {
         if (!static::$dbPrepared) {
             $this->bootEloquent();
-            $this->loadFactories();
             static::$dbPrepared = true;
         }
     }
@@ -62,31 +54,5 @@ trait ManagesDatabase
             $table->boolean('active');
             $table->timestamps();
         });
-    }
-
-    /**
-     * Load the database factories.
-     */
-    protected function loadFactories()
-    {
-        static::$factory = Factory::construct(
-            \Faker\Factory::create(),
-            __DIR__ . '/../factories'
-        );
-    }
-
-    /**
-     * You can use this method exactly as you would use the default laravel
-     * factory helper.
-     */
-    public function factory(...$arguments)
-    {
-        if (isset($arguments[1]) && is_string($arguments[1])) {
-            return static::$factory->of($arguments[0], $arguments[1])->times($arguments[2] ?? null);
-        } elseif (isset($arguments[1])) {
-            return static::$factory->of($arguments[0])->times($arguments[1]);
-        }
-
-        return static::$factory->of($arguments[0]);
     }
 }
